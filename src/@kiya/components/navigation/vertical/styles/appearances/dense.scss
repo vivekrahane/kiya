@@ -1,0 +1,194 @@
+/* Variables */
+:root {
+    --kiya-vertical-navigation-width: 280px;
+    --kiya-vertical-navigation-dense-width: 80px;
+}
+
+kiya-vertical-navigation {
+
+    /* Dense appearance overrides */
+    &.kiya-vertical-navigation-appearance-dense {
+
+        &:not(.kiya-vertical-navigation-mode-over) {
+            width: var(--kiya-vertical-navigation-dense-width);
+            min-width: var(--kiya-vertical-navigation-dense-width);
+            max-width: var(--kiya-vertical-navigation-dense-width);
+
+            /* Left positioned */
+            &.kiya-vertical-navigation-position-left {
+
+                /* Side mode */
+                &.kiya-vertical-navigation-mode-side {
+                    margin-left: calc(var(--kiya-vertical-navigation-dense-width) * -1);
+                }
+
+                /* Opened */
+                &.kiya-vertical-navigation-opened {
+                    margin-left: 0;
+                }
+            }
+
+            /* Right positioned */
+            &.kiya-vertical-navigation-position-right {
+
+                /* Side mode */
+                &.kiya-vertical-navigation-mode-side {
+                    margin-right: calc(var(--kiya-vertical-navigation-dense-width) * -1);
+                }
+
+                /* Opened */
+                &.kiya-vertical-navigation-opened {
+                    margin-right: 0;
+                }
+
+                /* Aside wrapper */
+                .kiya-vertical-navigation-aside-wrapper {
+                    left: auto;
+                    right: var(--kiya-vertical-navigation-dense-width);
+                }
+
+                &.kiya-vertical-navigation-hover {
+
+                    .kiya-vertical-navigation-aside-wrapper {
+                        left: auto;
+                        right: var(--kiya-vertical-navigation-width);
+                    }
+                }
+            }
+        }
+
+        /* Wrapper */
+        .kiya-vertical-navigation-wrapper {
+
+            /* Content */
+            .kiya-vertical-navigation-content {
+
+                kiya-vertical-navigation-aside-item,
+                kiya-vertical-navigation-basic-item,
+                kiya-vertical-navigation-collapsable-item,
+                kiya-vertical-navigation-group-item {
+
+                    .kiya-vertical-navigation-item-wrapper {
+
+                        .kiya-vertical-navigation-item {
+                            width: calc(var(--kiya-vertical-navigation-dense-width) - 24px);
+                            min-width: calc(var(--kiya-vertical-navigation-dense-width) - 24px);
+                            max-width: calc(var(--kiya-vertical-navigation-dense-width) - 24px);
+
+                            .kiya-vertical-navigation-item-arrow,
+                            .kiya-vertical-navigation-item-badge,
+                            .kiya-vertical-navigation-item-title-wrapper {
+                                transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+                            }
+                        }
+                    }
+                }
+
+                kiya-vertical-navigation-group-item {
+
+                    &:first-of-type {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+
+        &:not(.kiya-vertical-navigation-hover):not(.kiya-vertical-navigation-mode-over) {
+
+            /* Wrapper */
+            .kiya-vertical-navigation-wrapper {
+
+                /* Content */
+                .kiya-vertical-navigation-content {
+
+                    .kiya-vertical-navigation-item-wrapper {
+
+                        .kiya-vertical-navigation-item {
+                            padding: 10px 16px;
+
+                            .kiya-vertical-navigation-item-arrow,
+                            .kiya-vertical-navigation-item-badge,
+                            .kiya-vertical-navigation-item-title-wrapper {
+                                white-space: nowrap;
+                                opacity: 0;
+                            }
+                        }
+                    }
+
+                    kiya-vertical-navigation-collapsable-item {
+
+                        .kiya-vertical-navigation-item-children {
+                            display: none;
+                        }
+                    }
+
+                    kiya-vertical-navigation-group-item {
+
+                        > .kiya-vertical-navigation-item-wrapper {
+
+                            .kiya-vertical-navigation-item {
+
+                                &:before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 20px;
+                                    width: 23px;
+                                    border-top-width: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Aside wrapper */
+        .kiya-vertical-navigation-aside-wrapper {
+            left: var(--kiya-vertical-navigation-dense-width);
+        }
+
+        /* Hover */
+        &.kiya-vertical-navigation-hover {
+
+            .kiya-vertical-navigation-wrapper {
+                width: var(--kiya-vertical-navigation-width);
+
+                .kiya-vertical-navigation-content {
+
+                    .kiya-vertical-navigation-item-wrapper {
+
+                        .kiya-vertical-navigation-item {
+                            width: calc(var(--kiya-vertical-navigation-width) - 24px);
+                            min-width: calc(var(--kiya-vertical-navigation-width) - 24px);
+                            max-width: calc(var(--kiya-vertical-navigation-width) - 24px);
+
+                            .kiya-vertical-navigation-item-arrow,
+                            .kiya-vertical-navigation-item-badge,
+                            .kiya-vertical-navigation-item-title-wrapper {
+                                white-space: nowrap;
+                                animation: removeWhiteSpaceNoWrap 1ms linear 350ms;
+                                animation-fill-mode: forwards;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .kiya-vertical-navigation-aside-wrapper {
+                left: var(--kiya-vertical-navigation-width);
+            }
+        }
+    }
+}
+
+@keyframes removeWhiteSpaceNoWrap {
+    0% {
+        white-space: nowrap
+    }
+    99% {
+        white-space: nowrap
+    }
+    100% {
+        white-space: normal;
+    }
+}

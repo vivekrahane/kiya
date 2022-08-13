@@ -1,0 +1,30 @@
+<!-- Flippable card -->
+<ng-container *ngIf="flippable">
+
+    <!-- Front -->
+    <div class="kiya-card-front">
+        <ng-content select="[kiyaCardFront]"></ng-content>
+    </div>
+
+    <!-- Back -->
+    <div class="kiya-card-back">
+        <ng-content select="[kiyaCardBack]"></ng-content>
+    </div>
+
+</ng-container>
+
+<!-- Normal card -->
+<ng-container *ngIf="!flippable">
+
+    <!-- Content -->
+    <ng-content></ng-content>
+
+    <!-- Expansion -->
+    <div
+        class="kiya-card-expansion"
+        *ngIf="expanded"
+        [@expandCollapse]>
+        <ng-content select="[kiyaCardExpansion]"></ng-content>
+    </div>
+
+</ng-container>
